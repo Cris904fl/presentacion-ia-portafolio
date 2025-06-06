@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio IA - Cristian Florez</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .slide {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .slide-1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .slide-2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            text-align: center;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .project-card:nth-child(1) { animation-delay: 0.2s; }
+        .project-card:nth-child(2) { animation-delay: 0.4s; }
+        .project-card:nth-child(3) { animation-delay: 0.6s; }
+        
+        .project-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .project-tech {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .project-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            max-width: 1000px;
+            margin-bottom: 40px;
+        }
+        
+        .tech-item {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 15px;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: fadeInScale 1s ease-out;
+        }
+        
+        .tech-item:nth-child(1) { animation-delay: 0.1s; }
+        .tech-item:nth-child(2) { animation-delay: 0.2s; }
+        .tech-item:nth-child(3) { animation-delay: 0.3s; }
+        .tech-item:nth-child(4) { animation-delay: 0.4s; }
+        .tech-item:nth-child(5) { animation-delay: 0.5s; }
+        .tech-item:nth-child(6) { animation-delay: 0.6s; }
+        
+        .contact-info {
+            text-align: center;
+            font-size: 1.2rem;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+        
+        .emoji {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .subtitle { font-size: 1.2rem; }
+            .slide { padding: 20px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .tech-stack { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Portafolio Overview -->
+    <div class="slide slide-1" id="slide1">
+        <h1>🤖 Portafolio de IA</h1>
+        <p class="subtitle">Cristian Florez - Desarrollador de Software & Inteligencia Artificial</p>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-title">
+                    <span class="emoji">🔮</span>API Predicción IA
+                </div>
+                <div class="project-tech">Python + Flask + Scikit-learn</div>
+                <p class="project-desc">
+                    API REST para predicción de ventas y clasificación automática de productos por demanda usando Machine Learning.
+                </p>
+                <a href="https://github.com/Cris904fl/api-ia-prediccion" class="project-link" target="_blank">
+                    Ver Repositorio →
+                </a>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-title">
+                    <span class="emoji">📦</span>SnapPOS Inventario
+                </div>
+                <div class="project-tech">.NET MAUI + Blazor + Python AI</div>
+                <p class="project-desc">
+                    Aplicación híbrida multiplataforma con IA integrada para gestión inteligente de inventarios y análisis predictivo.
+                </p>
+                <a href="https://github.com/Cris904fl/gestorinventarios" class="project-link" target="_blank">
+                    Ver Repositorio →
+                </a>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-title">
+                    <span class="emoji">🔍</span>OCR.AI Facturas
+                </div>
+                <div class="project-tech">Python + Mistral AI + OCR</div>
+                <p class="project-desc">
+                    Sistema de procesamiento automático de facturas con extracción inteligente de datos y estructuración JSON.
+                </p>
+                <a href="https://github.com/Cris904fl/OCR.AI" class="project-link" target="_blank">
+                    Ver Repositorio →
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Slide 2: Technical Details -->
+    <div class="slide slide-2" id="slide2">
+        <h2>🛠️ Stack Tecnológico</h2>
+        
+        <div class="tech-stack">
+            <div class="tech-item">🐍 Python + Flask</div>
+            <div class="tech-item">🤖 Machine Learning</div>
+            <div class="tech-item">💻 .NET MAUI</div>
+            <div class="tech-item">🔥 Blazor Hybrid</div>
+            <div class="tech-item">🧠 Mistral AI</div>
+            <div class="tech-item">📊 OCR + Analytics</div>
+        </div>
+        
+        <div style="max-width: 800px; text-align: center; margin-bottom: 40px;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px;">✨ Características Destacadas</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; text-align: left;">
+                <div>
+                    <strong>🚀 Escalabilidad:</strong><br>
+                    APIs REST optimizadas para alta concurrencia
+                </div>
+                <div>
+                    <strong>🔄 Integración:</strong><br>
+                    Módulos intercomunicados y reutilizables
+                </div>
+                <div>
+                    <strong>📱 Multi-plataforma:</strong><br>
+                    Windows, macOS, Linux, iOS, Android
+                </div>
+                <div>
+                    <strong>🧪 Testing:</strong><br>
+                    Cobertura completa con pruebas automatizadas
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-info">
+            <p><strong>📧 cristiafl3@gmail.com</strong></p>
+            <p><strong>💻 GitHub: @Cris904fl</strong></p>
+            <p style="margin-top: 20px; font-size: 1rem; opacity: 0.9;">
+                ✅ Código fuente completo • ✅ Documentación técnica • ✅ Demos funcionales
+            </p>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" onclick="showSlide(1)">1</button>
+        <button class="nav-btn" onclick="showSlide(2)">2</button>
+    </div>
+    
+    <script>
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.style.display = 'none');
+            document.getElementById('slide' + n).style.display = 'flex';
+        }
+        
+        // Inicializar mostrando el primer slide
+        showSlide(1);
+        
+        // Navegación con teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                showSlide(2);
+            } else if (e.key === 'ArrowLeft') {
+                showSlide(1);
+            }
+        });
+        
+        // Auto-scroll suave entre slides cada 10 segundos
+        let currentSlide = 1;
+        setInterval(() => {
+            currentSlide = currentSlide === 1 ? 2 : 1;
+            showSlide(currentSlide);
+        }, 10000);
+    </script>
+</body>
+</html>
